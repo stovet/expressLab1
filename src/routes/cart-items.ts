@@ -83,7 +83,7 @@ cartRoutes.delete("/:id", function(req, res){
     let inputId: number = parseInt(req.params.id);
     let cartIndex = carts.findIndex(cart => cart.id === inputId);
     carts.splice(cartIndex, 1);
-    res.status(404);
+    res.status(204);
     res.json("");
 });
 
