@@ -25,8 +25,6 @@ cartRoutes.get("/", function(req, res){
             if(item.product.includes("Fancy", 0)){
                return item;
             };
-            
-            //return item.product === fancy;
     });
     res.json(fancyCart);
     } else if(pageSizeParam){
@@ -41,32 +39,21 @@ cartRoutes.get("/", function(req, res){
     else {
     res.status(200);
     res.json(cart);
-    }  
-    // if(fancyParam){
-    //     let fancyCart: Cart[] = cart.filter(item => {
-    //         if(item.product.indexOf("Fancy", 0)){
-    //            return item;
-    //         };
-    //     });
-    //     res.json(fancyCart);
-    // } else {
-    //     res.status(200);
-    //     res.json(cart);
-    //     }    
+    }    
 });
-// cartRoutes.get("/", function(req, res){
-//     let fancyParam: string = req.query.prefix as string;
-//     if(fancyParam){
-//         let fancyCart: Cart[] = cart.filter(item => {
-//             if(item.product.includes("Fancy", 0)){
-//                return item;
-//             };
-//         });
-//         res.json(fancyCart);
-//     } else {
-//         res.status(200);
-//         res.json(cart);
-//         }    
-//     });
+
+cartRoutes.get("/:id", function(req, res){
+    let inputId: number = parseInt(req.params.id);
+    for(let i = 0; i < cart.length; i++){
+        if(cart[i].id === inputId){
+            res.json(cart[i]);
+            res.status(200);
+            break;
+        }
+    }
+    res.status(404);
+    res.send({"error": "ID Not Found"})
+});
+
 
 export default cartRoutes;
