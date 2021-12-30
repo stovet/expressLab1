@@ -29,7 +29,15 @@ cartRoutes.get("/", function(req, res){
             //return item.product === fancy;
     });
     res.json(fancyCart);
-}
+    } else if(pageSizeParam){
+        let pageSize: number = parseInt(pageSizeParam);
+        let maxCart: Cart[] = [];
+        for(let i = 0; i < pageSize && i < cart.length; i++){
+            maxCart.push(cart[i]);
+        }
+        res.json(maxCart);
+    }
+    
     else {
     res.status(200);
     res.json(cart);
