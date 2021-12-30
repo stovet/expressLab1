@@ -7,3 +7,9 @@ const port = 3000;
 
 app.use(express.json());
 app.use("/cart-items", cartRoutes);
+
+
+
+app.listen(port, function(){
+    console.log(`Listening on ${port}`);
+});
